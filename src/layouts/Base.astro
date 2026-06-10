@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import { Header, Footer } from '../components/chrome.jsx';
+
+const {
+  title = 'Yojika — Offline-first GST billing for Indian small shops',
+  description = 'Yojika is offline-first GST billing software for Indian small shops. Keyboard-fast invoicing, 22-language invoices, works 100% offline on Windows.',
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://yojika.in').href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Yojika" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Guarantee content is visible when JS is unavailable -->
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col">
+      <Header client:load pathname={pathname} />
+      <main class="flex-1"><slot /></main>
+      <Footer />
+    </div>
+  </body>
+</html>
