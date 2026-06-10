@@ -1,0 +1,7 @@
+# Cloudflare Pages configuration.
+# `pages_build_output_dir` tells Pages to serve Astro's build output (dist/)
+# instead of the repository root. This overrides the dashboard "Build output
+# directory" setting. The build command (`npm run build`) stays in the dashboard.
+name = "yojika-web"
+compatibility_date = "2026-06-10"
+pages_build_output_dir = "dist"
