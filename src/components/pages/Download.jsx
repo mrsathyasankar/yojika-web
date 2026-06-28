@@ -2,6 +2,11 @@
 import { Container, Reveal, Eyebrow, Card, Button, WaitlistForm } from '../ui.jsx';
 import { Windows, Download, Check, Shield } from '../icons.jsx';
 
+/* The installer lives on Cloudflare R2 (too large for Pages' 25 MB file cap),
+   served from a custom domain. Keep this in sync with public/version.json — the
+   app's in-app update prompt reads that manifest to know a new build exists. */
+const INSTALLER_URL = 'https://dl.yojika.in/yojika-setup.exe';
+
 const INSTALL_STEPS = [
   { n: '1', title: 'Download the installer', body: 'Save Yojika-Setup.exe to your PC. It’s a single file — no extra downloads needed.' },
   { n: '2', title: 'Run it & follow along', body: 'Double-click the file and accept the defaults. Installation takes under a minute.' },
@@ -31,11 +36,11 @@ const DownloadPage = () => (
                 <span className="grid place-items-center w-14 h-14 rounded-card bg-brand text-white shadow-soft"><Windows size={30} /></span>
                 <div>
                   <p className="text-[18px] font-semibold text-ink-900">Yojika for Windows</p>
-                  <p className="font-num text-[12.5px] text-ink-400 mt-0.5">v1.0 · 64-bit · ~86 MB · .exe</p>
+                  <p className="font-num text-[12.5px] text-ink-400 mt-0.5">v1.0 · 64-bit · ~16 MB · .exe</p>
                 </div>
               </div>
               <div className="mt-5">
-                <Button as="a" href="#" onClick={(e) => e.preventDefault()} variant="primary" size="lg" icon={<Download size={19} />} className="w-full">
+                <Button as="a" href={INSTALLER_URL} download variant="primary" size="lg" icon={<Download size={19} />} className="w-full">
                   Download for Windows (.exe)
                 </Button>
               </div>
