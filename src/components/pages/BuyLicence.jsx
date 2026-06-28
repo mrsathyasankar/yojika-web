@@ -75,7 +75,7 @@ const BuyLicence = ({ email, label = 'Buy annual licence', onIssued }) => {
         name: 'Yojika',
         description: 'Annual subscription',
         prefill: { email: email || session.user?.email },
-        theme: { color: '#0F6E5A' },
+        theme: { color: '#C5372A' },
         handler: async () => {
           setStage('pending');
           const ok = await waitForLicence();
