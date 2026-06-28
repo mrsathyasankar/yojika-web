@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import AuthCallback from '../../components/pages/AuthCallback.jsx';
+---
+
+<Base title="Signing in… — Yojika" description="Completing your Yojika sign-in." noindex={true}>
+  <AuthCallback client:load />
+</Base>

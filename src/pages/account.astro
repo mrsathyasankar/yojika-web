@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import AccountPage from '../components/pages/Account.jsx';
+---
+
+<Base
+  title="Your account — Yojika"
+  description="Your Yojika licences, renewal dates and payment history."
+  noindex={true}
+>
+  <AccountPage client:load />
+</Base>
