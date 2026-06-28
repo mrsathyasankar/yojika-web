@@ -120,7 +120,7 @@ const Footer = () => (
       <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-white/45">
         <p>© 2026 Yojika. All rights reserved.</p>
         <div className="flex items-center gap-5">
-          <span className="font-num text-white/55">yojika.in</span>
+          <span className="font-num text-white/55">yojika.com</span>
           <span>Privacy</span>
           <span>Terms</span>
         </div>

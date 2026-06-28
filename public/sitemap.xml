@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yojika.in/</loc><priority>1.0</priority></url>
-  <url><loc>https://yojika.in/features</loc><priority>0.8</priority></url>
-  <url><loc>https://yojika.in/pricing</loc><priority>0.8</priority></url>
-  <url><loc>https://yojika.in/download</loc><priority>0.8</priority></url>
-  <url><loc>https://yojika.in/about</loc><priority>0.6</priority></url>
-  <url><loc>https://yojika.in/contact</loc><priority>0.6</priority></url>
+  <url><loc>https://yojika.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://yojika.com/features</loc><priority>0.8</priority></url>
+  <url><loc>https://yojika.com/pricing</loc><priority>0.8</priority></url>
+  <url><loc>https://yojika.com/download</loc><priority>0.8</priority></url>
+  <url><loc>https://yojika.com/about</loc><priority>0.6</priority></url>
+  <url><loc>https://yojika.com/contact</loc><priority>0.6</priority></url>
 </urlset>

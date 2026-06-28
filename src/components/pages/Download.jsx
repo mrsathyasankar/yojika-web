@@ -5,7 +5,7 @@ import { Windows, Download, Check, Shield } from '../icons.jsx';
 /* The installer lives on Cloudflare R2 (too large for Pages' 25 MB file cap),
    served from a custom domain. Keep this in sync with public/version.json — the
    app's in-app update prompt reads that manifest to know a new build exists. */
-const INSTALLER_URL = 'https://dl.yojika.in/yojika-setup.exe';
+const INSTALLER_URL = 'https://dl.yojika.com/yojika-setup.exe';
 
 const INSTALL_STEPS = [
   { n: '1', title: 'Download the installer', body: 'Save Yojika-Setup.exe to your PC. It’s a single file — no extra downloads needed.' },

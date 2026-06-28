@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yojika.in/sitemap.xml
+Sitemap: https://yojika.com/sitemap.xml
