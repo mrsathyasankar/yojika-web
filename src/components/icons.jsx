@@ -5,11 +5,13 @@ const Svg = ({ children, size = 24, className = '', sw = 1.6, fill = 'none', vb 
        className={className} aria-hidden="true" {...rest}>{children}</svg>
 );
 
-/* Brand leaf mark — used inside the logo's rounded square */
+/* Brand "Y" mark — used inside the logo's rounded square (renders in currentColor,
+   i.e. white on the brand square). The two-tone red/coral version lives in
+   public/favicon.svg and the brand kit. */
 const LeafGlyph = ({ size = 24, className = '' }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" className={className} aria-hidden="true">
-    <path d="M19 4C11.5 4 5.5 8.8 5.5 16.2c0 1.4.25 2.6.65 3.6 0 0 .9-6 5.35-9.4-2.6 3.5-3.3 7.2-3.4 9.6 1 .5 2.2.7 3.5.6C20 19.7 20.4 9.6 19 4Z"
-          fill="currentColor"/>
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
+    <path d="M27 24 L50 53 L50 80" stroke="currentColor" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M73 24 L52 50.5" stroke="currentColor" strokeWidth="13" strokeLinecap="round"/>
   </svg>
 );
 
