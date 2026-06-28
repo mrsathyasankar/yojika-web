@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import LoginPage from '../components/pages/Login.jsx';
+---
+
+<Base
+  title="Sign in — Yojika"
+  description="Sign in to your Yojika account to view your licences, renewal dates and payment history."
+  noindex={true}
+>
+  <LoginPage client:load />
+</Base>

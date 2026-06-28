@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, Button, Link, Logo } from './ui.jsx';
 import { Windows, Menu, Close, ArrowRight, Heart } from './icons.jsx';
+import { useSession } from '../lib/useSession.js';
 
 const NAV = [
   { to: '/', label: 'Home' },
@@ -19,6 +20,8 @@ const normPath = (p) => {
 
 const Header = ({ pathname = '/' }) => {
   const path = normPath(pathname);
+  const { session, loading } = useSession();
+  const authed = !loading && !!session;
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => {
@@ -50,7 +53,14 @@ const Header = ({ pathname = '/' }) => {
 
         <div className="hidden lg:flex items-center gap-2.5">
           <Button to="/download" variant="secondary" size="sm" icon={<Windows size={16} />}>Download</Button>
-          <Button to="/pricing" variant="primary" size="sm">Join waitlist</Button>
+          {authed ? (
+            <Button to="/account" variant="primary" size="sm">Account</Button>
+          ) : (
+            <>
+              <Button to="/login" variant="ghost" size="sm">Log in</Button>
+              <Button to="/pricing" variant="primary" size="sm">Join waitlist</Button>
+            </>
+          )}
         </div>
 
         <button className="lg:hidden grid place-items-center w-10 h-10 rounded-btn text-ink-900 hover:bg-ink-900/5"
@@ -74,7 +84,14 @@ const Header = ({ pathname = '/' }) => {
           </nav>
           <div className="mt-auto flex flex-col gap-2.5 pt-6">
             <Button to="/download" variant="secondary" size="lg" icon={<Windows size={18} />}>Download for Windows</Button>
-            <Button to="/pricing" variant="primary" size="lg">Join the waitlist</Button>
+            {authed ? (
+              <Button to="/account" variant="primary" size="lg">Your account</Button>
+            ) : (
+              <>
+                <Button to="/login" variant="secondary" size="lg">Log in</Button>
+                <Button to="/pricing" variant="primary" size="lg">Join the waitlist</Button>
+              </>
+            )}
           </div>
         </Container>
       </div>
