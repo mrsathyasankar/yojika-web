@@ -20,24 +20,39 @@
  */
 import { createClient } from '@supabase/supabase-js';
 
+const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const anon = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+// True only when both public keys are present. When false the portal (login /
+// account / checkout) is disabled, but the REST of the static site must still
+// render — including the header, which imports this module on every page.
+export const isSupabaseConfigured = Boolean(url && anon);
+
 let _client = null;
 
 function getClient() {
   if (_client) return _client;
-  const url = import.meta.env.PUBLIC_SUPABASE_URL;
-  const anon = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anon) {
-    // Surfaces a clear message in the browser if the env vars are missing.
-    console.error('Missing PUBLIC_SUPABASE_URL / PUBLIC_SUPABASE_ANON_KEY — see .env.example');
+  if (!isSupabaseConfigured) {
+    console.error(
+      'Missing PUBLIC_SUPABASE_URL / PUBLIC_SUPABASE_ANON_KEY — login & account are ' +
+        'disabled until these are set in the Cloudflare Pages environment. See .env.example',
+    );
   }
-  _client = createClient(url, anon, {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: false,
-      flowType: 'pkce',
+  // Fall back to a syntactically-valid placeholder so createClient never throws
+  // (it rejects empty/invalid URLs, which would crash the header island on every
+  // page). With no real backend, getSession() simply resolves to "logged out".
+  _client = createClient(
+    url || 'https://placeholder.supabase.co',
+    anon || 'placeholder-anon-key',
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+        flowType: 'pkce',
+      },
     },
-  });
+  );
   return _client;
 }
 
