@@ -20,39 +20,32 @@
  */
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.PUBLIC_SUPABASE_URL;
-const anon = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+// Public Supabase config. The project URL and the publishable/anon key are PUBLIC
+// by design — they ship in the browser bundle and Row-Level Security is what
+// protects the data — so we commit them as the source of truth. This avoids the
+// Cloudflare Pages footgun where dashboard "Variables and secrets" apply only to
+// the Functions runtime, not the static Astro build, leaving PUBLIC_* undefined at
+// build time. A build-time import.meta.env.PUBLIC_* still overrides these (e.g. to
+// point a fork at a different project).
+const url = import.meta.env.PUBLIC_SUPABASE_URL || 'https://izbwcvhpgxzotmorduxo.supabase.co';
+const anon = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_rAM1MqAsCFXte4H_GJN8Zg_X7wsepVx';
 
-// True only when both public keys are present. When false the portal (login /
-// account / checkout) is disabled, but the REST of the static site must still
-// render — including the header, which imports this module on every page.
+// Always configured now that the values are committed. Kept as an export so callers
+// (useSession, the auth pages) can stay defensive without special-casing.
 export const isSupabaseConfigured = Boolean(url && anon);
 
 let _client = null;
 
 function getClient() {
   if (_client) return _client;
-  if (!isSupabaseConfigured) {
-    console.error(
-      'Missing PUBLIC_SUPABASE_URL / PUBLIC_SUPABASE_ANON_KEY — login & account are ' +
-        'disabled until these are set in the Cloudflare Pages environment. See .env.example',
-    );
-  }
-  // Fall back to a syntactically-valid placeholder so createClient never throws
-  // (it rejects empty/invalid URLs, which would crash the header island on every
-  // page). With no real backend, getSession() simply resolves to "logged out".
-  _client = createClient(
-    url || 'https://placeholder.supabase.co',
-    anon || 'placeholder-anon-key',
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: false,
-        flowType: 'pkce',
-      },
+  _client = createClient(url, anon, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: false,
+      flowType: 'pkce',
     },
-  );
+  });
   return _client;
 }
 
