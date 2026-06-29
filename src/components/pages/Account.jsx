@@ -7,7 +7,7 @@ import { Shield, Wallet, Lock, CheckCircle, Tag } from '../icons.jsx';
 import { supabase } from '../../lib/supabase.js';
 import { useSession } from '../../lib/useSession.js';
 import { rupees, dmy } from '../../lib/format.js';
-import BuyLicence from './BuyLicence.jsx';
+import BetaLicenceForm from './BetaLicenceForm.jsx';
 
 const STATUS = {
   active: { label: 'Active', cls: 'text-ok bg-ok/12' },
@@ -121,25 +121,32 @@ const AccountPage = () => {
               </div>
               {err && <p className="text-[14px] text-err">{err}</p>}
               {licences.length === 0 ? (
-                <Card className="p-8 text-center">
-                  <span className="grid place-items-center w-14 h-14 rounded-full bg-brand-container/70 text-brand-deep mx-auto">
-                    <Tag size={26} />
-                  </span>
-                  <h3 className="mt-4 text-[18px] font-semibold text-ink-900">No licence on this account yet</h3>
-                  <p className="mt-2 text-[15px] text-ink-500 max-w-sm mx-auto">
-                    Buy an annual licence and your key + renewal date show up here automatically — we also email you the key.
-                  </p>
-                  <div className="mt-5 inline-flex flex-col items-center gap-2">
-                    <BuyLicence email={email} onIssued={load} />
-                  </div>
-                </Card>
+                <div className="space-y-4">
+                  <Card className="p-6 sm:p-7">
+                    <div className="flex items-start gap-3.5">
+                      <span className="shrink-0 grid place-items-center w-11 h-11 rounded-btn bg-brand-container/70 text-brand-deep">
+                        <Tag size={22} />
+                      </span>
+                      <div>
+                        <h3 className="text-[17px] font-semibold text-ink-900">No licence on this account yet</h3>
+                        <p className="mt-1 text-[14.5px] text-ink-500">
+                          Yojika is in beta — get the full app free for 3 months. Add a few details below and your
+                          key is issued instantly (we email it too), then it shows up here.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                  {/* Email is already verified on this page, so the form goes
+                      straight to collecting the shop profile. */}
+                  <BetaLicenceForm onIssued={load} />
+                </div>
               ) : (
                 <>
                   {!hasActive && (
                     <Card className="p-5 sm:p-6 ring-amber/30 bg-amber-soft/20">
                       <p className="text-[15px] font-medium text-ink-900">Your licence isn’t active</p>
-                      <p className="mt-1 text-[14px] text-ink-500">Renew to keep billing on this device without interruption.</p>
-                      <div className="mt-4"><BuyLicence email={email} label="Renew licence" onIssued={load} /></div>
+                      <p className="mt-1 text-[14px] text-ink-500">During the beta you can get a fresh 3-month licence, free.</p>
+                      <div className="mt-4"><Button to="/pricing" variant="primary" size="sm">Get a beta licence</Button></div>
                     </Card>
                   )}
                   {licences.map((lic) => <LicenceCard key={lic.id} lic={lic} />)}

@@ -37,7 +37,7 @@ const BUSINESS_TYPES = [
 // 10-digit Indian mobile, after stripping spaces/dashes (server normalizes too).
 const phoneOk = (v) => /^[6-9]\d{9}$/.test(v.replace(/\D/g, ''));
 
-const BetaLicenceForm = () => {
+const BetaLicenceForm = ({ onIssued }) => {
   const { session, loading } = useSession();
   const [data, setData] = React.useState({ name: '', phone: '', state: '', business_type: '' });
   const [errs, setErrs] = React.useState({});
@@ -78,6 +78,10 @@ const BetaLicenceForm = () => {
       const body = await resp.json();
       if (!resp.ok) throw new Error(body?.error || 'Could not issue your licence. Please try again.');
       setIssued(body);
+      // Let an embedding page (e.g. the account dashboard) refresh so the new
+      // licence card appears. On the standalone /pricing page there's no callback,
+      // so the success card below is shown instead.
+      onIssued?.(body);
     } catch (err) {
       setErrs({ form: err?.message || 'Something went wrong. Please try again.' });
     } finally {
