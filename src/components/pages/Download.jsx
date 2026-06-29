@@ -1,6 +1,6 @@
 /* Yojika — Download page. */
-import { Container, Reveal, Eyebrow, Card, Button, WaitlistForm } from '../ui.jsx';
-import { Windows, Download, Check, Shield } from '../icons.jsx';
+import { Container, Reveal, Eyebrow, Card, Button } from '../ui.jsx';
+import { Windows, Download, Check, Shield, ArrowRight } from '../icons.jsx';
 
 /* The installer lives on Cloudflare R2 (too large for Pages' 25 MB file cap),
    served from a custom domain. Keep this in sync with public/version.json — the
@@ -106,16 +106,21 @@ const DownloadPage = () => (
       </Container>
     </section>
 
-    {/* Secondary waitlist */}
+    {/* Beta licence CTA */}
     <section className="pb-16">
       <Container>
         <Reveal>
           <Card className="p-7 sm:p-9 text-center">
-            <h2 className="text-[24px] font-semibold text-ink-900">Not ready to install today?</h2>
+            <h2 className="text-[24px] font-semibold text-ink-900">Need a licence to activate?</h2>
             <p className="mt-2.5 text-[15.5px] text-ink-500 max-w-lg mx-auto">
-              Join the waitlist and we’ll send you a note when the signed installer and launch pricing are live.
+              Yojika is in beta — get the full app free for 3 months. Verify your email, tell us about your shop,
+              and your licence key is yours instantly.
             </p>
-            <div className="mt-6 flex justify-center"><WaitlistForm cta="Keep me posted" /></div>
+            <div className="mt-6 flex justify-center">
+              <Button to="/pricing" variant="primary" size="lg" iconRight={<ArrowRight size={18} />}>
+                Get your free beta licence
+              </Button>
+            </div>
           </Card>
         </Reveal>
       </Container>

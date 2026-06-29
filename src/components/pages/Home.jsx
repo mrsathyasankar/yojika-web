@@ -45,7 +45,7 @@ const HomeHero = () => (
             and your business data never leaves your shop’s PC.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button to="/pricing" variant="primary" size="lg" iconRight={<ArrowRight size={18} />}>Join the waitlist</Button>
+            <Button to="/pricing" variant="primary" size="lg" iconRight={<ArrowRight size={18} />}>Get a free 3-month licence</Button>
             <Button to="/download" variant="secondary" size="lg" icon={<Windows size={18} />}>Download for Windows</Button>
           </div>
           <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2.5">
