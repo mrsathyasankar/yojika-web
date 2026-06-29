@@ -9,7 +9,7 @@
 import React from 'react';
 import { Button } from '../ui.jsx';
 import { CheckCircle, ArrowRight } from '../icons.jsx';
-import { supabase } from '../../lib/supabase.js';
+import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '../../lib/supabase.js';
 
 const CHECKOUT_SRC = 'https://checkout.razorpay.com/v1/checkout.js';
 
@@ -54,11 +54,11 @@ const BuyLicence = ({ email, label = 'Buy annual licence', onIssued }) => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { window.location.replace('/login'); return; }
 
-      const resp = await fetch(`${import.meta.env.PUBLIC_SUPABASE_URL}/functions/v1/create-order`, {
+      const resp = await fetch(`${SUPABASE_URL}/functions/v1/create-order`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${session.access_token}`,
-          apikey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+          apikey: SUPABASE_ANON_KEY,
           'content-type': 'application/json',
         },
       });

@@ -30,6 +30,14 @@ import { createClient } from '@supabase/supabase-js';
 const url = import.meta.env.PUBLIC_SUPABASE_URL || 'https://izbwcvhpgxzotmorduxo.supabase.co';
 const anon = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_rAM1MqAsCFXte4H_GJN8Zg_X7wsepVx';
 
+// Exported so components that call Edge Functions directly (BetaLicenceForm,
+// BuyLicence) use the SAME resolved values — with the committed defaults. Reading
+// import.meta.env.PUBLIC_* in those components instead would be `undefined` in the
+// Cloudflare static build (dashboard vars only reach the Functions runtime), which
+// produced fetches to `https://yojika.com/undefined/functions/...` → 405.
+export const SUPABASE_URL = url;
+export const SUPABASE_ANON_KEY = anon;
+
 // Always configured now that the values are committed. Kept as an export so callers
 // (useSession, the auth pages) can stay defensive without special-casing.
 export const isSupabaseConfigured = Boolean(url && anon);
