@@ -12,7 +12,7 @@ module.exports = {
           DEFAULT: '#C5372A',
           light: '#F0A096',
           container: '#FFDAD3',
-          deep: '#9A2A1E',
+          deep: '#A32A20',
         },
         amber: { DEFAULT: '#9A6A1C', soft: '#F4E7CC' },
         ok: '#1B7F47',
