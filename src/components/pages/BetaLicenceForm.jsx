@@ -12,7 +12,7 @@
 import React from 'react';
 import { Card, Field, Button } from '../ui.jsx';
 import { CheckCircle, ArrowRight, Lock, Shield } from '../icons.jsx';
-import { supabase } from '../../lib/supabase.js';
+import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '../../lib/supabase.js';
 import { useSession } from '../../lib/useSession.js';
 
 // Kept in lockstep with the server's canonical lists in
@@ -61,11 +61,11 @@ const BetaLicenceForm = ({ onIssued }) => {
     try {
       const { data: { session: s } } = await supabase.auth.getSession();
       if (!s) { window.location.replace('/login'); return; }
-      const resp = await fetch(`${import.meta.env.PUBLIC_SUPABASE_URL}/functions/v1/request-beta-licence`, {
+      const resp = await fetch(`${SUPABASE_URL}/functions/v1/request-beta-licence`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${s.access_token}`,
-          apikey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+          apikey: SUPABASE_ANON_KEY,
           'content-type': 'application/json',
         },
         body: JSON.stringify({
