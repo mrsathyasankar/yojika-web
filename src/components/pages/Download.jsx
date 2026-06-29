@@ -36,7 +36,7 @@ const DownloadPage = () => (
                 <span className="grid place-items-center w-14 h-14 rounded-card bg-brand text-white shadow-soft"><Windows size={30} /></span>
                 <div>
                   <p className="text-[18px] font-semibold text-ink-900">Yojika for Windows</p>
-                  <p className="font-num text-[12.5px] text-ink-400 mt-0.5">v1.0 · 64-bit · ~16 MB · .exe</p>
+                  <p className="font-num text-[12.5px] text-ink-400 mt-0.5">v1.0.1 · 64-bit · ~16 MB · .exe</p>
                 </div>
               </div>
               <div className="mt-5">
