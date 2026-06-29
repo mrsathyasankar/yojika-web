@@ -1,6 +1,6 @@
 /* Yojika — shared UI primitives, links, and layout helpers. */
 import React from 'react';
-import { LeafGlyph, ArrowRight, CheckCircle } from './icons.jsx';
+import { LeafGlyph } from './icons.jsx';
 
 /* ---------- Links (real multi-page URLs) ---------- */
 function scrollToId(id) {
@@ -150,44 +150,7 @@ const Field = ({ label, hint, type = 'text', as = 'input', children, required = 
   );
 };
 
-/* ---------- Waitlist form (reused) ---------- */
-const WaitlistForm = ({ dark = false, compact = false, cta = 'Join the waitlist', placeholder = 'you@shop.in' }) => {
-  const [email, setEmail] = React.useState('');
-  const [done, setDone] = React.useState(false);
-  const [err, setErr] = React.useState('');
-  const submit = (e) => {
-    e.preventDefault();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setErr('Enter a valid email address.'); return; }
-    setErr(''); setDone(true);
-    // NOTE: wire to backend later — POST { email } to /api/waitlist
-  };
-  if (done) {
-    return (
-      <div className={'flex items-center gap-3 rounded-btn px-4 py-3.5 ' + (dark ? 'bg-white/10 text-white' : 'bg-brand-container/70 text-brand-deep')}>
-        <CheckCircle size={22} className="shrink-0 text-ok" />
-        <p className="text-[15px]">You're on the list. We'll email <span className="font-num font-medium">{email}</span> at launch.</p>
-      </div>
-    );
-  }
-  return (
-    <form onSubmit={submit} noValidate className={compact ? '' : 'max-w-md'}>
-      <div className="flex flex-col sm:flex-row gap-2.5">
-        <input
-          type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-          placeholder={placeholder} aria-label="Email address"
-          className={'flex-1 rounded-btn px-4 py-3 text-[15px] font-num focus:outline-none focus:ring-2 transition ' +
-            (dark ? 'bg-white/10 text-white placeholder:text-white/45 ring-1 ring-white/20 focus:ring-brand-light'
-                  : 'bg-white text-ink-900 placeholder:text-ink-400 ring-1 ring-ink-900/15 focus:ring-brand')} />
-        <Button type="submit" variant={dark ? 'dark' : 'primary'} size="lg" iconRight={<ArrowRight size={18} />}>{cta}</Button>
-      </div>
-      {err
-        ? <p className="mt-2 text-[13px] text-err">{err}</p>
-        : <p className={'mt-2.5 text-[12.5px] ' + (dark ? 'text-white/55' : 'text-ink-400')}>No spam. One email when we launch, plus launch pricing.</p>}
-    </form>
-  );
-};
-
 export {
   scrollToId, Link, Logo, Button, Container,
-  Eyebrow, Reveal, SectionHead, Card, Field, WaitlistForm,
+  Eyebrow, Reveal, SectionHead, Card, Field,
 };

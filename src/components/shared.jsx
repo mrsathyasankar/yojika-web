@@ -1,7 +1,7 @@
-/* Yojika — components shared across multiple pages: FAQ accordion + closing waitlist CTA. */
+/* Yojika — components shared across multiple pages: FAQ accordion + closing beta CTA. */
 import React from 'react';
-import { Container, Reveal, SectionHead, WaitlistForm } from './ui.jsx';
-import { Plus, Receipt } from './icons.jsx';
+import { Container, Reveal, SectionHead, Button } from './ui.jsx';
+import { Plus, Receipt, ArrowRight } from './icons.jsx';
 
 /* Reusable accordion FAQ */
 const FAQ = ({ items, title = 'Questions, answered plainly', eyebrow = 'FAQ' }) => {
@@ -46,12 +46,16 @@ const ClosingCTA = () => (
           <div className="absolute inset-0 hatch opacity-[0.15]" />
           <div className="relative max-w-2xl">
             <h2 className="text-[30px] sm:text-[36px] leading-tight font-semibold tracking-tight">
-              Be first in line when Yojika launches
+              Try Yojika free for 3 months
             </h2>
             <p className="mt-3.5 text-[16.5px] text-white/75 max-w-xl">
-              Join the waitlist for early access and launch pricing. One email, no spam — we'll only write when it's ready.
+              Yojika is in beta. Tell us a little about your shop and get the full app, free for three months — no card, no commitment.
             </p>
-            <div className="mt-7"><WaitlistForm dark cta="Join waitlist" /></div>
+            <div className="mt-7">
+              <Button to="/pricing" variant="dark" size="lg" iconRight={<ArrowRight size={18} />}>
+                Get your free beta licence
+              </Button>
+            </div>
           </div>
         </div>
       </Reveal>

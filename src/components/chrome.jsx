@@ -7,7 +7,7 @@ import { useSession } from '../lib/useSession.js';
 const NAV = [
   { to: '/', label: 'Home' },
   { to: '/features', label: 'Features' },
-  { to: '/pricing', label: 'Pricing' },
+  { to: '/pricing', label: 'Get licence' },
   { to: '/download', label: 'Download' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
@@ -58,7 +58,7 @@ const Header = ({ pathname = '/' }) => {
           ) : (
             <>
               <Button to="/login" variant="ghost" size="sm">Log in</Button>
-              <Button to="/pricing" variant="primary" size="sm">Join waitlist</Button>
+              <Button to="/pricing" variant="primary" size="sm">Get free licence</Button>
             </>
           )}
         </div>
@@ -89,7 +89,7 @@ const Header = ({ pathname = '/' }) => {
             ) : (
               <>
                 <Button to="/login" variant="secondary" size="lg">Log in</Button>
-                <Button to="/pricing" variant="primary" size="lg">Join the waitlist</Button>
+                <Button to="/pricing" variant="primary" size="lg">Get free licence</Button>
               </>
             )}
           </div>
@@ -130,7 +130,7 @@ const Footer = () => (
           <ul className="mt-4 space-y-2.5 text-[14.5px]">
             <li><a href="mailto:hello@yojika.in" className="text-white/65 hover:text-white transition-colors font-num">hello@yojika.in</a></li>
             <li><Link to="/contact" className="text-white/65 hover:text-white transition-colors">Support &amp; partnerships</Link></li>
-            <li><Link to="/pricing" className="text-white/65 hover:text-white transition-colors">Join the waitlist</Link></li>
+            <li><Link to="/pricing" className="text-white/65 hover:text-white transition-colors">Get your free beta licence</Link></li>
           </ul>
         </div>
       </div>
