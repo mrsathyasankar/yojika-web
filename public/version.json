@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "url": "https://dl.yojika.com/yojika-setup.exe",
-  "notes": "Fresh new look, plus an in-app update prompt so you'll know when the next version is ready."
+  "notes": "Your Yojika app icon now shows correctly on the taskbar and window, plus behind-the-scenes improvements."
 }
